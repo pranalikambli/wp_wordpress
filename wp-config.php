@@ -20,19 +20,20 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wp_jewellery' );
 
+// ** Heroku Postgres settings - from Heroku Environment ** //
+$db = parse_url($_ENV["DATABASE_URL"]);
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define('DB_NAME', trim($db["path"],"/"));
 /** MySQL database username */
-define( 'DB_USER', 'root' );
-
+define('DB_USER', $db["user"]);
 /** MySQL database password */
-define( 'DB_PASSWORD', 'root' );
-
+// define('DB_PASSWORD', $db["pass"]);
 /** MySQL hostname */
-define( 'DB_HOST', 'localhost' );
-
+define('DB_HOST', $db["host"]);
 /** Database Charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8' );
+define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
